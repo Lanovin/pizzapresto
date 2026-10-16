@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f6eedf;
+  --paper-2: #efe3cd;
+  --cream: #fffaf1;
+  --ink: #1f1712;
+  --ink-soft: #5b4a3d;
+  --tomato: #e23b1f;
+  --tomato-dark: #b92a12;
+  --basil: #2e6b3b;
+  --crust: #e8ac55;
+  --mustard: #f3c64b;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-tomato: var(--tomato);
+  --color-tomato-dark: var(--tomato-dark);
+  --color-basil: var(--basil);
+  --color-crust: var(--crust);
+  --color-mustard: var(--mustard);
+  --font-display: var(--font-bricolage);
+  --font-serif: var(--font-instrument);
+  --font-sans: var(--font-dmsans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  /* jemná "mouka" – šum přes papír */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: var(--font-dmsans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--tomato);
+  color: var(--cream);
+}
+
+:focus-visible {
+  outline: 3px solid var(--tomato);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.font-display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-variation-settings: "wdth" 85;
+  letter-spacing: -0.02em;
+}
+
+.font-serif {
+  font-family: var(--font-instrument), Georgia, serif;
+}
+
+@layer components {
+/* ---------- tlačítka – "nálepky" s tvrdým stínem ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.btn-primary {
+  background: var(--tomato);
+  color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--tomato-dark);
+}
+.btn-light {
+  background: var(--cream);
+  color: var(--ink);
+}
+.btn-dark {
+  background: var(--ink);
+  color: var(--cream);
+  box-shadow: 4px 4px 0 var(--tomato);
+}
+.btn-dark:hover {
+  box-shadow: 6px 6px 0 var(--tomato);
+}
+.btn-sm {
+  padding: 0.55rem 0.95rem;
+  font-size: 0.875rem;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.card {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 1.5rem;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--cream);
+}
+
+.eyebrow {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* účtenka se zoubkovaným okrajem */
+.receipt {
+  background: var(--cream);
+  position: relative;
+  --zig: 12px;
+  -webkit-mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--zig) 51% repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--zig) 51% repeat-x;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--zig) 51% repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--zig) 51% repeat-x;
+}
+
+}
+
+/* ---------- běžící pás ---------- */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ---------- košík: odlet pizzy ---------- */
+.fly-dot {
+  position: fixed;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35) rotate(-8deg);
+  }
+  70% {
+    transform: scale(0.92) rotate(4deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-bump {
+  animation: bump 0.45s ease;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-pop {
+  animation: pop 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+.animate-wiggle {
+  animation: wiggle 2.4s ease-in-out infinite;
+}
+
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scaleX(1);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-26px) scaleX(1.4);
+  }
+}
+
+@keyframes drive {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
