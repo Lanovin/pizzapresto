@@ -17,7 +17,7 @@ export default function KontaktPage() {
         <h1 className="font-display text-[clamp(3.5rem,10vw,8rem)] font-extrabold leading-[0.82] max-sm:text-[3.4rem]">
           Ozvěte <span className="font-serif font-normal italic text-tomato">se.</span>
         </h1>
-        <p className="mt-4 max-w-lg text-lg text-ink-soft max-sm:mt-3 max-sm:text-base">
+        <p className="mt-4 max-w-lg text-lg text-ink-soft max-sm:hidden">
           Objednávku nejrychleji vyřídíte online nebo telefonem. Na všechno ostatní je tu formulář a e-mail.
         </p>
       </section>
@@ -29,7 +29,7 @@ export default function KontaktPage() {
           <div className="min-w-0">
             <p className="eyebrow mt-6 text-cream/80 max-sm:mt-0">Zavolejte</p>
             <p className="font-display mt-1 text-[2.1rem] font-extrabold leading-none max-sm:text-[1.7rem]">608 364 560</p>
-            <p className="mt-2 text-sm text-cream/80 max-sm:mt-1">Objednávky i dotazy, denně 11–20</p>
+            <p className="mt-2 text-sm text-cream/80 max-sm:hidden">Objednávky i dotazy, denně 11–20</p>
           </div>
         </a>
         <a href={`mailto:${restaurant.email}`} className="card group p-7 transition-transform hover:-translate-y-1 max-sm:flex max-sm:items-center max-sm:gap-4 max-sm:p-5">
@@ -37,7 +37,7 @@ export default function KontaktPage() {
           <div className="min-w-0">
             <p className="eyebrow mt-6 text-ink-soft max-sm:mt-0">Napište</p>
             <p className="font-display mt-1 break-all text-[1.9rem] font-extrabold leading-none max-sm:text-[1.45rem]">{restaurant.email}</p>
-            <p className="mt-2 text-sm text-ink-soft max-sm:mt-1">Odpovídáme obvykle do 24 hodin</p>
+            <p className="mt-2 text-sm text-ink-soft max-sm:hidden">Odpovídáme obvykle do 24 hodin</p>
           </div>
         </a>
         <a href={restaurant.mapsUrl} target="_blank" rel="noreferrer" className="card group p-7 transition-transform hover:-translate-y-1 max-sm:flex max-sm:items-center max-sm:gap-4 max-sm:p-5">
@@ -45,7 +45,7 @@ export default function KontaktPage() {
           <div className="min-w-0">
             <p className="eyebrow mt-6 text-ink-soft max-sm:mt-0">Přijďte</p>
             <p className="font-display mt-1 text-[2.1rem] font-extrabold leading-none max-sm:text-[1.7rem]">{restaurant.street}</p>
-            <p className="mt-2 text-sm text-ink-soft max-sm:mt-1">{restaurant.city}</p>
+            <p className="mt-2 text-sm text-ink-soft max-sm:hidden">{restaurant.city}</p>
           </div>
         </a>
       </section>
@@ -60,7 +60,11 @@ export default function KontaktPage() {
             <h2 className="font-display flex items-center gap-2 text-3xl font-extrabold">
               <ClockIcon className="h-7 w-7 text-tomato" /> Otevírací doba
             </h2>
-            <dl className="mt-4 divide-y-2 divide-dashed divide-ink/20">
+            <p className="mt-3 flex justify-between text-lg font-bold sm:hidden">
+              <span>Po–Ne</span>
+              <span className="tabular-nums">11:00 – 20:00</span>
+            </p>
+            <dl className="mt-4 divide-y-2 divide-dashed divide-ink/20 max-sm:hidden">
               {days.map((d) => (
                 <div key={d} className="flex justify-between py-2 font-semibold">
                   <dt>{d}</dt>
@@ -73,14 +77,14 @@ export default function KontaktPage() {
             <iframe
               title="Mapa – Pizza Presto"
               src="https://maps.google.com/maps?q=Pra%C5%BEsk%C3%A1%2022%2C%20Mn%C3%AD%C5%A1ek%20pod%20Brdy&z=16&output=embed"
-              className="h-72 w-full grayscale-[40%]"
+              className="h-72 w-full grayscale-[40%] max-sm:h-56"
               loading="lazy"
             />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto mt-16 max-w-7xl px-4 max-sm:mt-10">
+      <section className="mx-auto mt-16 max-w-7xl px-4 max-sm:mt-8">
         <p className="text-sm text-ink-soft max-sm:text-xs">
           Provozovatel: Michal Slaboch, Hankova 599/13, 163 00 Praha 6 – Řepy · IČO 70552967 · DIČ CZ7906270020
         </p>

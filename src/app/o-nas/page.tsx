@@ -15,16 +15,19 @@ const pillars = [
     no: "01",
     title: "Těsto",
     text: "Nadýchaný okraj, tenký střed. Těsto necháváme pořádně odpočinout, aby bylo lehké a dobře stravitelné.",
+    short: "Nadýchaný okraj, tenký střed",
   },
   {
     no: "02",
     title: "Suroviny",
     text: "Šunka z kýty, Prosciutto Crudo, Grana Padano, rajčata San Marzano. Klasika, kterou nemá smysl ošidit.",
+    short: "Prosciutto, Grana Padano, San Marzano",
   },
   {
     no: "03",
     title: "Presto",
     text: "Italsky „rychle“. Pizza je hotová za pár minut a kurýr vyráží hned, jak vyjede z pece.",
+    short: "Z pece rovnou do krabice",
   },
 ];
 
@@ -50,12 +53,12 @@ export default function ONasPage() {
         <h2 className="font-display text-5xl font-extrabold leading-[0.9] max-sm:text-[2.6rem] sm:text-6xl">
           Pečeme pro Mníšek <span className="font-serif font-normal italic text-tomato">a okolí.</span>
         </h2>
-        <div className="space-y-5 text-lg leading-relaxed text-ink-soft max-sm:space-y-4 max-sm:text-base">
+        <div className="space-y-5 text-lg leading-relaxed text-ink-soft max-sm:space-y-4 max-sm:text-[0.95rem] max-sm:leading-snug">
           <p>
             Pizza Presto je sousedská pizzerie na Pražské ulici v Mníšku pod Brdy. Děláme to, co umíme nejlíp: poctivou pizzu
             ve dvou velikostech, k tomu pár salátů, polévku a burgery s trhaným masem.
           </p>
-          <p>
+          <p className="max-sm:hidden">
             Většina našich pizz odjíždí v krabici – proto je rozvoz u nás na prvním místě a objednávka má být hotová během
             minuty. Ale kdo má čas, ten si může sednout přímo k nám a dát si pizzu, dokud ještě syčí.
           </p>
@@ -70,7 +73,8 @@ export default function ONasPage() {
                 {p.no}
               </span>
               <h3 className="font-display mt-4 text-4xl font-extrabold max-md:mt-0 max-md:text-3xl">{p.title}</h3>
-              <p className="mt-3 text-ink-soft max-md:mt-1 max-md:text-[0.95rem]">{p.text}</p>
+              <p className="mt-3 text-ink-soft max-md:hidden">{p.text}</p>
+              <p className="mt-0.5 font-semibold text-ink-soft md:hidden">{p.short}</p>
             </div>
           ))}
         </div>
@@ -88,7 +92,7 @@ export default function ONasPage() {
           <h2 className="font-display text-5xl font-extrabold leading-[0.9] sm:text-6xl">
             Posezení <span className="font-serif font-normal italic text-tomato">u nás</span>
           </h2>
-          <p className="max-w-sm text-ink-soft">
+          <p className="max-w-sm text-ink-soft max-sm:text-sm max-sm:font-semibold">
             {restaurant.street}, {restaurant.city} · {restaurant.hours}
           </p>
         </div>
@@ -99,16 +103,16 @@ export default function ONasPage() {
           <Photo src="/photos/dining.jpg" alt="Večeře s přáteli" className="sm:col-span-2" />
           <Photo src="/photos/dark-pizza.jpg" alt="Pizza na prkénku" />
         </div>
-        <p className="mt-3 text-xs text-ink-soft">Ilustrační fotografie (Unsplash) – v ostré verzi nahradit fotkami provozovny.</p>
+        <p className="mt-3 text-xs text-ink-soft max-sm:hidden">Ilustrační fotografie (Unsplash) – v ostré verzi nahradit fotkami provozovny.</p>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-20 text-center max-sm:pt-14">
         <p className="font-display text-4xl font-extrabold sm:text-5xl">Dostali jste chuť?</p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/menu" className="btn btn-primary text-lg">
+        <div className="mt-6 flex flex-wrap justify-center gap-3 max-sm:grid max-sm:grid-cols-2 max-sm:gap-2">
+          <Link href="/menu" className="btn btn-primary text-lg max-sm:px-3 max-sm:text-base">
             Objednat rozvoz <ArrowIcon />
           </Link>
-          <Link href="/kontakt" className="btn btn-light text-lg">
+          <Link href="/kontakt" className="btn btn-light text-lg max-sm:px-3 max-sm:text-base">
             Kontakt
           </Link>
         </div>

@@ -279,6 +279,33 @@ body {
   display: none;
 }
 
+/* ---------- telefon: odhalení sekcí při scrollu (čisté CSS, bez JS; bez podpory se prostě zobrazí hned) ---------- */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 639px) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+  /* dotek = hmatatelná odezva karet a tlačítek */
+  a.card:active,
+  button.card:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -29,21 +29,36 @@ export function CaesarFeature() {
 
         <div className="order-1 lg:order-2">
           <p className="eyebrow text-mustard">Pizza měsíce</p>
-          <h2 className="font-display mt-3 text-6xl font-extrabold leading-[0.85] max-sm:text-[3.4rem] sm:text-8xl">
+          <h2 className="font-display mt-3 text-6xl font-extrabold leading-[0.85] max-sm:text-[3.1rem] sm:text-8xl">
             Caesar,
             <br />
             <span className="font-serif font-normal italic text-mustard">ale na pizze.</span>
           </h2>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-cream/85 max-sm:mt-5 max-sm:text-base">
+          <ul className="mt-5 flex flex-wrap gap-2 sm:hidden">
+            {["smetana", "mozzarella", "kuře", "slanina", "parmezán", "křupavý salát"].map((t) => (
+              <li key={t} className="rounded-full border-2 border-cream/40 px-3 py-1 text-sm font-semibold">
+                {t}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-cream/85 max-sm:hidden">
             Smetanový základ, mozzarella, kuřecí maso, slanina a parmezán. Po upečení jde navrch křupavý římský salát a náš
             Caesar dresink. Salát a pizza v jednom – a obojí ještě teplé.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 max-sm:mt-6 max-sm:grid max-sm:grid-cols-1">
-            <button className="btn btn-light text-lg" onClick={(e) => add(p.id, "32", e.currentTarget)}>
-              <PlusIcon /> ø 32 cm · {formatPrice(p.price)}
+          <div className="mt-8 flex flex-wrap gap-3 max-sm:mt-6 max-sm:grid max-sm:grid-cols-2 max-sm:gap-2">
+            <button className="btn btn-light text-lg max-sm:flex-col max-sm:gap-1 max-sm:px-3 max-sm:py-3 max-sm:text-base" onClick={(e) => add(p.id, "32", e.currentTarget)}>
+              <span className="flex items-center gap-1.5">
+                <PlusIcon className="h-4 w-4" /> ø 32 cm
+              </span>
+              <span className="sm:hidden">{formatPrice(p.price)}</span>
+              <span className="max-sm:hidden">· {formatPrice(p.price)}</span>
             </button>
-            <button className="btn btn-dark text-lg" onClick={(e) => add(p.id, "24", e.currentTarget)}>
-              <PlusIcon /> ø 24 cm · {formatPrice(p.priceSmall!)}
+            <button className="btn btn-dark text-lg max-sm:flex-col max-sm:gap-1 max-sm:px-3 max-sm:py-3 max-sm:text-base" onClick={(e) => add(p.id, "24", e.currentTarget)}>
+              <span className="flex items-center gap-1.5">
+                <PlusIcon className="h-4 w-4" /> ø 24 cm
+              </span>
+              <span className="sm:hidden">{formatPrice(p.priceSmall!)}</span>
+              <span className="max-sm:hidden">· {formatPrice(p.priceSmall!)}</span>
             </button>
           </div>
         </div>
