@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PizzaWheel } from "@/components/PizzaWheel";
-import { OpenBadge } from "@/components/OpenBadge";
 import { Marquee } from "@/components/Marquee";
 import { CaesarFeature } from "@/components/CaesarFeature";
 import { ProductCard } from "@/components/ProductCard";
@@ -17,8 +16,7 @@ export default function Home() {
       <section className="relative">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-8 max-sm:gap-8 max-sm:pb-10 max-sm:pt-5 lg:grid-cols-[1fr_1.05fr] lg:pt-12">
           <div className="animate-rise relative z-10">
-            <OpenBadge />
-            <h1 className="font-display mt-6 text-[clamp(4rem,11vw,9.5rem)] font-extrabold leading-[0.8] max-sm:mt-5 max-sm:text-[clamp(3.6rem,19vw,5rem)]">
+            <h1 className="font-display text-[clamp(4rem,11vw,9.5rem)] font-extrabold leading-[0.8] max-sm:text-[clamp(3.6rem,19vw,5rem)]">
               Pizza,
               <br />
               <span className="font-serif font-normal italic text-tomato">presto!</span>
