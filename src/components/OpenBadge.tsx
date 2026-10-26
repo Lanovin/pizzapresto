@@ -22,7 +22,7 @@ export function OpenBadge() {
         {state === "open" && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-basil opacity-60" />}
         <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${state === "closed" ? "bg-tomato" : "bg-basil"}`} />
       </span>
-      {state === "closed" ? "Teď zavřeno · objednávky od 11:00" : state === "open" ? "Pec je rozpálená · objednávejte" : "Denně 11:00–20:00"}
+      {state === "closed" ? "Teď zavřeno · objednávky od 11:00" : "Denně 11:00–20:00"}
     </span>
   );
 }
